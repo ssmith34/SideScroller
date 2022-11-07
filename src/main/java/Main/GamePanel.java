@@ -3,7 +3,6 @@ package Main;
 import inputs.KeyboardInputs;
 import inputs.MouseInputs;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;

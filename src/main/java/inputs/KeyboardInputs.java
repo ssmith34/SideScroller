@@ -23,38 +23,48 @@ public class KeyboardInputs implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {
+
         switch(e.getKeyCode()) {
             case KeyEvent.VK_W:
-                gamePanel.getGame().getPlayer().setUp(true);
+                gamePanel.getGame().getPlayer().setUp(false);
                 break;
             case KeyEvent.VK_A:
-                gamePanel.getGame().getPlayer().setLeft(true);
+                gamePanel.getGame().getPlayer().setLeft(false);
                 break;
             case KeyEvent.VK_S:
-                gamePanel.getGame().getPlayer().setDown(true);
+                gamePanel.getGame().getPlayer().setDown(false);
                 break;
             case KeyEvent.VK_D:
-                gamePanel.getGame().getPlayer().setRight(true);
+                gamePanel.getGame().getPlayer().setRight(false);
+                break;
+            case KeyEvent.VK_SPACE:
+                gamePanel.getGame().getPlayer().setJump(false);
                 break;
         }
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-
+    public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
             case KeyEvent.VK_W:
                 gamePanel.getGame().getPlayer().setUp(true);
+                System.out.println("UP");
                 break;
             case KeyEvent.VK_A:
                 gamePanel.getGame().getPlayer().setLeft(true);
+                System.out.println("LEFT");
                 break;
             case KeyEvent.VK_S:
                 gamePanel.getGame().getPlayer().setDown(true);
+                System.out.println("DOWN");
                 break;
             case KeyEvent.VK_D:
                 gamePanel.getGame().getPlayer().setRight(true);
+                System.out.println("RIGHT");
+                break;
+            case KeyEvent.VK_SPACE:
+                gamePanel.getGame().getPlayer().setJump(true);
                 break;
         }
     }

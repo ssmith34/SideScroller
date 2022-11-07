@@ -17,7 +17,7 @@ public class Game implements Runnable{
     private LevelManager levelManager;
 
     public final static int TILES_DEFAULT_SIZE = 32;
-    public final static float SCALE = 1f;
+    public final static float SCALE = 2f;
     public final static int TILES_IN_WIDTH = 26;
     public final static int TILES_IN_HEIGHT = 14;
     public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
@@ -28,6 +28,7 @@ public class Game implements Runnable{
         initClasses();
         gamePanel = new GamePanel(this);
         gameWindow = new GameWindow(gamePanel);
+        gamePanel.setFocusable(true);
         gamePanel.requestFocus();
         startGameLoop();
     }
