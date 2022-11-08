@@ -2,11 +2,8 @@ package levels;
 
 import Main.Game;
 import utils.LoadSave;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
-import static Main.Game.TILES_SIZE;
 
 public class LevelManager {
 

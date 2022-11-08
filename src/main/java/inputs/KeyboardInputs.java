@@ -1,14 +1,10 @@
 package inputs;
 
-import Main.Game;
-import Main.GamePanel;
-import gamestates.Gamestate;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import static utils.Constants.Directions.*;
-import static utils.Constants.PlayerConstants.*;
+import gamestates.Gamestate;
+import Main.GamePanel;
 
 public class KeyboardInputs implements KeyListener {
 
@@ -39,5 +35,13 @@ switch(Gamestate.state) {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        switch(Gamestate.state) {
+            case PLAYING:
+                gamePanel.getGame().getPlaying().keyPressed(e);
+                break;
+            case MENU:
+                gamePanel.getGame().getMenu().keyPressed(e);
+                break;
+        }
     }
 }

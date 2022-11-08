@@ -1,7 +1,8 @@
 package Main;
 
-import gamestates.Gamestate;
 import gamestates.Playing;
+import gamestates.Menu;
+import gamestates.Gamestate;
 
 import java.awt.*;
 
@@ -15,6 +16,7 @@ public class Game implements Runnable{
 
     private Playing playing;
     private Menu menu;
+
     public final static int TILES_DEFAULT_SIZE = 32;
     public final static float SCALE = 2f;
     public final static int TILES_IN_WIDTH = 26;
@@ -33,7 +35,6 @@ public class Game implements Runnable{
     }
 
     private void initClasses() {
-
         menu = new Menu(this);
         playing = new Playing(this);
     }
@@ -44,7 +45,6 @@ public class Game implements Runnable{
     }
 
     public void update() {
-
         switch(Gamestate.state) {
             case MENU:
                 menu.update();

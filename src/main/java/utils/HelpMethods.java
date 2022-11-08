@@ -28,13 +28,12 @@ public class HelpMethods {
 
         int value = lvlData[(int) yIndex][(int) xIndex];
 
-        if(value >= 48 || value < 0 || value == 11)
+        if(value >= 48 || value < 0 || value != 11)
             return true;
         return false;
     }
 
     public static float GetEntityXPosNextToWall(Rectangle2D.Float hitbox, float xSpeed) {
-
         int currentTile = (int) (hitbox.x / Game.TILES_SIZE);
         if(xSpeed > 0) {
             //Right
@@ -61,7 +60,7 @@ public class HelpMethods {
 
     public static boolean IsEntityOnFloor(Rectangle2D.Float hitbox, int[][] lvlData) {
         // Check the pixel below bottomleft and bottomright
-        if(!IsSolid(hitbox.x, hitbox.y+hitbox.height + 1, lvlData))
+        if(!IsSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData))
             if(!IsSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData))
                 return false;
         return true;
