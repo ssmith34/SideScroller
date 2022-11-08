@@ -74,7 +74,6 @@ public class Playing extends State implements Statemethods{
         }
     }
 
-
     @Override
     public void mousePressed(MouseEvent e) {
 
@@ -89,7 +88,6 @@ public class Playing extends State implements Statemethods{
     public void mouseMoved(MouseEvent e) {
 
     }
-
 
     public void windowFocusLost() {
         player.resetDirBooleans();
