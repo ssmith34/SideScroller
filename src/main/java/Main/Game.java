@@ -33,7 +33,6 @@ public class Game implements Runnable {
 		gamePanel.requestFocus();
 
 		startGameLoop();
-
 	}
 
 	private void initClasses() {
@@ -59,7 +58,6 @@ public class Game implements Runnable {
 			default:
 				System.exit(0);
 				break;
-
 		}
 	}
 
@@ -118,7 +116,6 @@ public class Game implements Runnable {
 
 			}
 		}
-
 	}
 
 	public void windowFocusLost() {
