@@ -2,7 +2,6 @@ package ui;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import utilz.LoadSave;
 import static utilz.Constants.UI.PauseButtons.*;
 
@@ -15,7 +14,6 @@ public class SoundButton extends PauseButton {
 
 	public SoundButton(int x, int y, int width, int height) {
 		super(x, y, width, height);
-
 		loadSoundImgs();
 	}
 
@@ -38,7 +36,6 @@ public class SoundButton extends PauseButton {
 			colIndex = 1;
 		if (mousePressed)
 			colIndex = 2;
-
 	}
 
 	public void resetBools() {
@@ -73,5 +70,4 @@ public class SoundButton extends PauseButton {
 	public void setMuted(boolean muted) {
 		this.muted = muted;
 	}
-
 }

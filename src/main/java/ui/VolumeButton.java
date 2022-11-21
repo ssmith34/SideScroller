@@ -2,7 +2,6 @@ package ui;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import utilz.LoadSave;
 import static utilz.Constants.UI.VolumeButtons.*;
 
@@ -32,7 +31,6 @@ public class VolumeButton extends PauseButton {
             imgs[i] = temp.getSubimage(i * VOLUME_DEFAULT_WIDTH, 0, VOLUME_DEFAULT_WIDTH, VOLUME_DEFAULT_HEIGHT);
 
         slider = temp.getSubimage(3 * VOLUME_DEFAULT_WIDTH, 0, SLIDER_DEFAULT_WIDTH, VOLUME_DEFAULT_HEIGHT);
-
     }
 
     public void update() {
@@ -41,14 +39,11 @@ public class VolumeButton extends PauseButton {
             index = 1;
         if (mousePressed)
             index = 2;
-
     }
 
     public void draw(Graphics g) {
-
         g.drawImage(slider, x, y, width, height, null);
         g.drawImage(imgs[index], buttonX - VOLUME_WIDTH / 2, y, VOLUME_WIDTH, height, null);
-
     }
 
     public void changeX(int x) {
@@ -58,9 +53,7 @@ public class VolumeButton extends PauseButton {
             buttonX = maxX;
         else
             buttonX = x;
-
         bounds.x = buttonX - VOLUME_WIDTH / 2;
-
     }
 
     public void resetBools() {

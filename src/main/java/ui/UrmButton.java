@@ -22,7 +22,6 @@ public class UrmButton extends PauseButton {
         imgs = new BufferedImage[3];
         for (int i = 0; i < imgs.length; i++)
             imgs[i] = temp.getSubimage(i * URM_DEFAULT_SIZE, rowIndex * URM_DEFAULT_SIZE, URM_DEFAULT_SIZE, URM_DEFAULT_SIZE);
-
     }
 
     public void update() {
@@ -31,7 +30,6 @@ public class UrmButton extends PauseButton {
             index = 1;
         if (mousePressed)
             index = 2;
-
     }
 
     public void draw(Graphics g) {
@@ -58,5 +56,4 @@ public class UrmButton extends PauseButton {
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
     }
-
 }

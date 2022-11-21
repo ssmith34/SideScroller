@@ -27,7 +27,6 @@ public class MenuButton {
 
 	private void initBounds() {
 		bounds = new Rectangle(xPos - xOffsetCenter, yPos, B_WIDTH, B_HEIGHT);
-
 	}
 
 	private void loadImgs() {
@@ -77,5 +76,4 @@ public class MenuButton {
 		mouseOver = false;
 		mousePressed = false;
 	}
-
 }
