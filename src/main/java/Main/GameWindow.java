@@ -28,7 +28,5 @@ public class GameWindow {
 			public void windowGainedFocus(WindowEvent e) {
 			}
 		});
-
 	}
-
 }

@@ -24,7 +24,7 @@ public class LevelManager {
 
 	public void loadNextLevel() {
 		lvlIndex++;
-		if(lvlIndex >= levels.size()) {
+		if (lvlIndex >= levels.size()) {
 			lvlIndex = 0;
 			System.out.println("No more levels!");
 			Gamestate.state = Gamestate.MENU;
@@ -38,7 +38,7 @@ public class LevelManager {
 
 	private void buildAllLevels() {
 		BufferedImage[] allLevels = LoadSave.GetAllLevels();
-		for(BufferedImage img : allLevels)
+		for (BufferedImage img : allLevels)
 			levels.add(new Level(img));
 	}
 

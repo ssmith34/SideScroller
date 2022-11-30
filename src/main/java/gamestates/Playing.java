@@ -56,6 +56,7 @@ public class Playing extends State implements Statemethods {
 	public void loadNextLevel() {
 		resetAll();
 		levelManager.loadNextLevel();
+		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 	}
 
 	private void loadStartLevel() {
@@ -79,7 +80,7 @@ public class Playing extends State implements Statemethods {
 
 	@Override
 	public void update() {
-		if(paused) {
+		if (paused) {
 			pauseOverlay.update();
 		}
 		else if (lvlCompleted) {
@@ -155,7 +156,7 @@ public class Playing extends State implements Statemethods {
 	public void mouseClicked(MouseEvent e) {
 		if (!gameOver)
 			if (e.getButton() == MouseEvent.BUTTON1)
-			player.setAttacking(true);
+				player.setAttacking(true);
 	}
 
 	@Override

@@ -39,13 +39,19 @@ public class LevelCompletedOverlay {
         bgX = Game.GAME_WIDTH / 2 - bgW / 2;
         bgY = (int) (75 * Game.SCALE);
     }
+
     public void draw(Graphics g) {
+        g.setColor(new Color(0, 0, 0, 200));
+        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+
         g.drawImage(img, bgX, bgY, bgW, bgH, null);
         next.draw(g);
         menu.draw(g);
     }
-    public void update() {
 
+    public void update() {
+        next.update();
+        menu.update();
     }
 
     private boolean isIn(UrmButton b, MouseEvent e) {
@@ -61,19 +67,21 @@ public class LevelCompletedOverlay {
         else if (isIn(next, e))
             next.setMouseOver(true);
     }
+
     public void mouseReleased(MouseEvent e) {
-        if (isIn(menu, e))
-            if(menu.isMousePressed()) {
+        if (isIn(menu, e)) {
+            if (menu.isMousePressed()) {
                 playing.resetAll();
                 Gamestate.state = Gamestate.MENU;
             }
+        }
         else if (isIn(next, e))
-            if(next.isMousePressed())
+            if (next.isMousePressed())
                 playing.loadNextLevel();
-
             menu.resetBools();
             next.resetBools();
     }
+
     public void mousePressed(MouseEvent e) {
         if (isIn(menu, e))
             menu.setMousePressed(true);

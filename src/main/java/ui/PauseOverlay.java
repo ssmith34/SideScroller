@@ -52,7 +52,6 @@ public class PauseOverlay {
 		int sfxY = (int) (186 * Game.SCALE);
 		musicButton = new SoundButton(soundX, musicY, SOUND_SIZE, SOUND_SIZE);
 		sfxButton = new SoundButton(soundX, sfxY, SOUND_SIZE, SOUND_SIZE);
-
 	}
 
 	private void loadBackground() {
@@ -130,10 +129,9 @@ public class PauseOverlay {
 				playing.unpauseGame();
 			}
 		}
-		else if (isIn(e, unpauseB)) {
+		else if (isIn(e, unpauseB))
 			if (unpauseB.isMousePressed())
 				playing.unpauseGame();
-		}
 
 		musicButton.resetBools();
 		sfxButton.resetBools();

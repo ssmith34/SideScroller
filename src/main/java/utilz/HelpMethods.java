@@ -1,5 +1,6 @@
 package utilz;
 
+import static utilz.Constants.EnemyConstants.CRABBY;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import entities.Crabby;
 import main.Game;
 
-import static utilz.Constants.EnemyConstants.CRABBY;
+
 
 public class HelpMethods {
 
@@ -16,7 +17,8 @@ public class HelpMethods {
 		if (!IsSolid(x, y, lvlData))
 			if (!IsSolid(x + width, y + height, lvlData))
 				if (!IsSolid(x + width, y, lvlData))
-					return !IsSolid(x, y + height, lvlData);
+					if (!IsSolid(x, y + height, lvlData))
+						return true;
 		return false;
 	}
 
@@ -34,7 +36,9 @@ public class HelpMethods {
 
 	public static boolean IsTileSolid(int xTile, int yTile, int[][] lvlData) {
 		int value = lvlData[yTile][xTile];
-		return value >= 48 || value < 0 || value != 11;
+		if (value >= 48 || value < 0 || value != 11)
+			return true;
+		return false;
 	}
 
 	public static float GetEntityXPosNextToWall(Rectangle2D.Float hitbox, float xSpeed) {
@@ -62,7 +66,6 @@ public class HelpMethods {
 	}
 
 	public static boolean IsEntityOnFloor(Rectangle2D.Float hitbox, int[][] lvlData) {
-		// Check the pixel below bottomleft and bottomright
 		if (!IsSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData))
 			if (!IsSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData))
 				return false;
@@ -70,7 +73,7 @@ public class HelpMethods {
 	}
 
 	public static boolean IsFloor(Rectangle2D.Float hitbox, float xSpeed, int[][] lvlData) {
-		if(xSpeed > 0)
+		if (xSpeed > 0)
 			return IsSolid(hitbox.x + hitbox.width + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
 		else
 			return IsSolid(hitbox.x + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
@@ -85,6 +88,7 @@ public class HelpMethods {
 		}
 		return true;
 	}
+
 	public static boolean IsSightClear(int[][] lvlData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox, int yTile) {
 		int firstXTile = (int) (firstHitbox.x / Game.TILES_SIZE);
 		int secondXTile = (int) (secondHitbox.x / Game.TILES_SIZE);
@@ -97,7 +101,6 @@ public class HelpMethods {
 
 	public static int[][] GetLevelData(BufferedImage img) {
 		int[][] lvlData = new int[img.getHeight()][img.getWidth()];
-
 		for (int j = 0; j < img.getHeight(); j++)
 			for (int i = 0; i < img.getWidth(); i++) {
 				Color color = new Color(img.getRGB(i, j));

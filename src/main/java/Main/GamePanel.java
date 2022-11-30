@@ -28,7 +28,6 @@ public class GamePanel extends JPanel {
 	}
 
 	public void updateGame() {
-
 	}
 
 	public void paintComponent(Graphics g) {
@@ -39,5 +38,4 @@ public class GamePanel extends JPanel {
 	public Game getGame() {
 		return game;
 	}
-
 }

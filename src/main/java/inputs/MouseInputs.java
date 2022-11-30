@@ -7,6 +7,8 @@ import java.awt.event.MouseMotionListener;
 import gamestates.Gamestate;
 import main.GamePanel;
 
+import static gamestates.Gamestate.PLAYING;
+
 public class MouseInputs implements MouseListener, MouseMotionListener {
 
 	private GamePanel gamePanel;
@@ -23,9 +25,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 				break;
 			default:
 				break;
-
 		}
-
 	}
 
 	@Override
@@ -39,22 +39,13 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 				break;
 			default:
 				break;
-
 		}
-
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		switch (Gamestate.state) {
-			case PLAYING:
+		if (Gamestate.state == PLAYING)
 				gamePanel.getGame().getPlaying().mouseClicked(e);
-				break;
-			default:
-				break;
-
-		}
-
 	}
 
 	@Override
@@ -68,9 +59,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 				break;
 			default:
 				break;
-
 		}
-
 	}
 
 	@Override
@@ -84,20 +73,14 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 				break;
 			default:
 				break;
-
 		}
-
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-
 	}
-
 }

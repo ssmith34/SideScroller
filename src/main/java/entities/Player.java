@@ -34,7 +34,7 @@ public class Player extends Entity {
 	private int statusBarWidth = (int) (192 * Game.SCALE);
 	private int statusBarHeight = (int) (58 * Game.SCALE);
 	private int statusBarX = (int) (10 * Game.SCALE);
-	private int statusBarY = (int) ( 10 * Game.SCALE);
+	private int statusBarY = (int) (10 * Game.SCALE);
 
 	private int healthBarWidth = (int) (150 * Game.SCALE);
 	private int healthBarHeight = (int) (4 * Game.SCALE);
@@ -94,12 +94,10 @@ public class Player extends Entity {
 	}
 
 	private void updateAttackBox() {
-		if(right) {
+		if(right)
 			attackBox.x = hitbox.x + hitbox.width + (int) (Game.SCALE * 10);
-		}
-		else if(left) {
+		else if(left)
 			attackBox.x = hitbox.x - hitbox.width - (int) (Game.SCALE * 10);
-		}
 		attackBox.y = hitbox.y + (Game.SCALE * 10);
 	}
 
@@ -108,7 +106,7 @@ public class Player extends Entity {
 	}
 
 	public void render(Graphics g, int lvlOffset) {
-		g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset, (int) (hitbox.y - yDrawOffset), width, height, null);
+		g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX, (int) (hitbox.y - yDrawOffset), width * flipW, height, null);
 //		drawHitbox(g, lvlOffset);
 //		drawAttackBox(g, lvlOffset);
 		drawUI(g);
@@ -135,9 +133,7 @@ public class Player extends Entity {
 				attacking = false;
 				attackChecked = false;
 			}
-
 		}
-
 	}
 
 	private void setAnimation() {
@@ -157,7 +153,7 @@ public class Player extends Entity {
 
 		if (attacking) {
 			playerAction = ATTACK;
-			if(startAni != ATTACK) {
+			if (startAni != ATTACK) {
 				aniIndex = 1;
 				aniTick = 0;
 				return;
@@ -223,7 +219,6 @@ public class Player extends Entity {
 			return;
 		inAir = true;
 		airSpeed = jumpSpeed;
-
 	}
 
 	private void resetInAir() {
@@ -261,7 +256,6 @@ public class Player extends Entity {
 		this.lvlData = lvlData;
 		if (!IsEntityOnFloor(hitbox, lvlData))
 			inAir = true;
-
 	}
 
 	public void resetDirBooleans() {

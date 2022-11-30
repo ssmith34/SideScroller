@@ -6,7 +6,6 @@ import static utilz.HelpMethods.*;
 import static utilz.Constants.Directions.*;
 
 public abstract class Enemy extends Entity{
-
     protected int aniIndex, enemyState, enemyType;
     protected int aniTick, aniSpeed = 25;
     protected boolean firstUpdate = true;
@@ -63,7 +62,7 @@ public abstract class Enemy extends Entity{
     }
 
     protected void turnTowardsPlayer(Player player) {
-        if(player.hitbox.x > hitbox.x)
+        if (player.hitbox.x > hitbox.x)
             walkDir = RIGHT;
         else
             walkDir = LEFT;
@@ -71,9 +70,9 @@ public abstract class Enemy extends Entity{
 
     protected boolean canSeePlayer(int[][] lvlData, Player player) {
         int playerTileY = (int) (player.getHitbox().y / Game.TILES_SIZE);
-        if(playerTileY == tileY)
-            if(isPlayerInRange(player)) {
-                if(IsSightClear(lvlData, hitbox, player.hitbox, tileY))
+        if (playerTileY == tileY)
+            if (isPlayerInRange(player)) {
+                if (IsSightClear(lvlData, hitbox, player.hitbox, tileY))
                     return true;
             }
         return false;

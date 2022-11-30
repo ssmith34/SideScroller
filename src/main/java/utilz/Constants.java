@@ -5,7 +5,6 @@ import main.Game;
 public class Constants {
 
 	public static class EnemyConstants {
-
 		public static final int CRABBY = 0;
 		public static final int IDLE = 0;
 		public static final int RUNNING = 1;
@@ -39,6 +38,7 @@ public class Constants {
 			}
 			return 0;
 		}
+
 		public static int GetMaxHealth(int enemy_type) {
 			switch (enemy_type) {
 				case CRABBY:
@@ -58,7 +58,7 @@ public class Constants {
 		}
 	}
 
-	public static class Environment{
+	public static class Environment {
 		public static final int BIG_CLOUD_WIDTH_DEFAULT = 448;
 		public static final int BIG_CLOUD_HEIGHT_DEFAULT = 101;
 		public static final int SMALL_CLOUD_WIDTH_DEFAULT = 74;
