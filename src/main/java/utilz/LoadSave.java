@@ -25,6 +25,9 @@ public class LoadSave {
 	public static final String CRABBY_SPRITE = "crabby_sprite.png";
 	public static final String STATUS_BAR = "health_power_bar.png";
 	public static final String COMPLETED_IMG = "completed_sprite.png";
+	public static final String POTION_ATLAS = "potions_sprites.png";
+	public static final String CONTAINER_ATLAS = "objects_sprites.png";
+	public static final String TRAP_ATLAS = "trap_atlas.png";
 
 	public static BufferedImage GetSpriteAtlas(String fileName) {
 		BufferedImage img = null;
@@ -60,7 +63,7 @@ public class LoadSave {
 
 		for (int i = 0; i < filesSorted.length; i++)
 			for (int j = 0; j < files.length; j++) {
-				if (files[j].getName().equals((i + 1) + ".png"));
+				if (files[j].getName().equals((i + 1) + ".png")) ;
 					filesSorted[i] = files[j];
 			}
 
@@ -72,6 +75,7 @@ public class LoadSave {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		return imgs;
+			return imgs;
+
 	}
 }
