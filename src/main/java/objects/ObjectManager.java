@@ -12,6 +12,7 @@ import main.Game;
 import utilz.LoadSave;
 import static utilz.Constants.ObjectConstants.*;
 import static utilz.HelpMethods.CanCannonSeePlayer;
+import static utilz.HelpMethods.IsProjectileHittingLevel;
 import static utilz.Constants.Projectiles.*;
 
 public class ObjectManager {
