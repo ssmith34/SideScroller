@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+import audio.AudioPlayer;
 import gamestates.Playing;
 import main.Game;
 import utilz.LoadSave;
@@ -39,6 +40,15 @@ public class Player extends Entity {
 	private int healthBarYStart = (int) (14 * Game.SCALE);
 	private int healthWidth = healthBarWidth;
 
+	//PowerBar
+	private int powerBarWidth = (int) (104 * Game.SCALE);
+	private int powerBarHeight = (int) (2 * Game.SCALE);
+	private int powerBarXStart = (int) (44 * Game.SCALE);
+	private int powerBarYStart = (int) (34 * Game.SCALE);
+	private int powerWidth = powerBarWidth;
+	private int powerMaxValue = 200;
+	private int powerValue = powerMaxValue;
+
 	//Direction facing
 	private int flipX = 0;
 	private int flipW = 1;
@@ -47,6 +57,8 @@ public class Player extends Entity {
 	private Playing playing;
 
 	private int tileY = 0;
+	private boolean powerAttackActive = false;
+	private int powerAttackTick, powerGrowTick, powerGrowSpeed = 15;
 
 	public Player(float x, float y, int width, int height, Playing playing) {
 		super(x, y, width, height);
@@ -73,15 +85,19 @@ public class Player extends Entity {
 
 	public void update() {
 		updateHealthBar();
+		updatePowerBar();
 		if (currentHealth <= 0) {
 			if (state != DEATH) {
 				state = DEATH;
 				aniTick = 0;
 				aniIndex = 0;
 				playing.setPlayerDying (true);
+				playing.getGame().getAudioPlayer().playEffect(AudioPlayer.DIE);
 			}
 			else if (aniIndex == GetSpriteAmount(DEATH) - 1 && aniTick >= ANI_SPEED - 1) {
 				playing.setGameOver(true);
+				playing.getGame().getAudioPlayer().stopSong();
+				playing.getGame().getAudioPlayer().playEffect(AudioPlayer.GAMEOVER);
 			}
 			else
 				updateAnimationTick();
@@ -114,6 +130,7 @@ public class Player extends Entity {
 		attackChecked = true;
 		playing.checkEnemyHit(attackBox);
 		playing.checkObjectHit(attackBox);
+		playing.getGame().getAudioPlayer().playAttackSound();
 	}
 
 	private void updateAttackBox() {
@@ -128,6 +145,16 @@ public class Player extends Entity {
 		healthWidth = (int) ((currentHealth / (float) maxHealth) * healthBarWidth);
 	}
 
+	private void updatePowerBar() {
+		powerWidth = (int) ((powerValue / (float) powerMaxValue) * powerBarWidth);
+
+		powerGrowTick++;
+		if (powerGrowTick >= powerGrowSpeed) {
+			powerGrowTick = 0;
+			changePower(1);
+		}
+	}
+
 	public void render(Graphics g, int lvlOffset) {
 		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX, (int) (hitbox.y - yDrawOffset), width * flipW, height, null);
 //		drawHitbox(g, lvlOffset);
@@ -136,9 +163,16 @@ public class Player extends Entity {
 	}
 
 	private void drawUI(Graphics g) {
+		//Background UI
 		g.drawImage(statusBarImg, statusBarX, statusBarY, statusBarWidth, statusBarHeight, null);
+
+		// Health UI
 		g.setColor(Color.red);
 		g.fillRect(healthBarXStart + statusBarX, healthBarYStart + statusBarY, healthWidth, healthBarHeight);
+
+		//Power Bar
+		g.setColor(Color.yellow);
+		g.fillRect(powerBarXStart + statusBarX, powerBarYStart + statusBarY, powerWidth, powerBarHeight);
 	}
 
 	private void updateAnimationTick() {
@@ -193,7 +227,8 @@ public class Player extends Entity {
 			jump();
 
 		if (!inAir)
-			if ((!left && !right) || (right && left))
+			if (!powerAttackActive)
+				if ((!left && !right) || (right && left))
 				return;
 
 		float xSpeed = 0;
@@ -207,6 +242,13 @@ public class Player extends Entity {
 			xSpeed += walkSpeed;
 			flipX = 0;
 			flipW = 1;
+		}
+
+		if (powerAttackActive) {
+			if (!left && !right) {
+				
+			}
+			xSpeed *= 3;
 		}
 
 		if (!inAir)
@@ -235,6 +277,7 @@ public class Player extends Entity {
 	private void jump() {
 		if (inAir)
 			return;
+		playing.getGame().getAudioPlayer().playEffect(AudioPlayer.JUMP);
 		inAir = true;
 		airSpeed = jumpSpeed;
 	}
@@ -265,7 +308,11 @@ public class Player extends Entity {
 	}
 
 	public void changePower(int value) {
-		System.out.println("Added power!");
+		powerValue += value;
+		if (powerValue >= powerMaxValue)
+			powerValue = powerMaxValue;
+		else if (powerValue <= 0)
+			powerValue = 0;
 	}
 
 	private void loadAnimations() {
@@ -330,5 +377,14 @@ public class Player extends Entity {
 
 	public int getTileY() {
 		return tileY;
+	}
+
+	public void powerAttack() {
+		if (powerAttackActive)
+			return;
+		if (powerValue >= 60) {
+			powerAttackActive = true;
+			changePower(-60);
+		}
 	}
 }
