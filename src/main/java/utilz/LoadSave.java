@@ -67,7 +67,7 @@ public class LoadSave {
 
 		for (int i = 0; i < filesSorted.length; i++)
 			for (int j = 0; j < files.length; j++) {
-				if (files[j].getName().equals((i + 1) + ".png")) ;
+				if (files[j].getName().equals((i + 1) + ".png"))
 					filesSorted[i] = files[j];
 			}
 

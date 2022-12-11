@@ -102,6 +102,15 @@
           <properties class="java.awt.image.RasterFormatException" package="java.awt.image" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/levels/LevelManager.java</url>
+          <line>39</line>
+          <properties class="levels.LevelManager" method="buildAllLevels">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
