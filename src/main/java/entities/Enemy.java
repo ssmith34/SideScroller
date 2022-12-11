@@ -2,9 +2,8 @@ package entities;
 import main.Game;
 import java.awt.geom.Rectangle2D;
 
-import static utilz.Constants.ANI_SPEED;
+import static utilz.Constants.*;
 import static utilz.Constants.EnemyConstants.*;
-import static utilz.Constants.GRAVITY;
 import static utilz.HelpMethods.*;
 import static utilz.Constants.Directions.*;
 

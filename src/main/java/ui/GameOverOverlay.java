@@ -4,12 +4,10 @@ import gamestates.Gamestate;
 import gamestates.Playing;
 import main.Game;
 import utilz.LoadSave;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-
 import static utilz.Constants.UI.URMButtons.URM_SIZE;
 
 public class GameOverOverlay {
@@ -49,7 +47,6 @@ public class GameOverOverlay {
 
         menu.draw(g);
         play.draw(g);
-
     }
 
     public void update() {
@@ -82,7 +79,7 @@ public class GameOverOverlay {
         else if (isIn(play, e))
             if (play.isMousePressed()) {
                 playing.resetAll();
-                playing.getGame().getAudioPlayer().setLevelSong(playing.getLevelManager().getLvlIndex());
+                playing.getGame().getAudioPlayer().setLevelSong(playing.getLevelManager().getLevelIndex());
             }
         menu.resetBools();
         play.resetBools();

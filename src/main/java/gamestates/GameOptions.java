@@ -16,7 +16,7 @@ public class GameOptions extends State implements Statemethods{
 
     private AudioOptions audioOptions;
     private BufferedImage backgroundImg, optionsBackgroundImg;
-    private int bgW, bgH, bgX, bgY;
+    private int bgX, bgY, bgW, bgH;
     private UrmButton menuB;
     
     public GameOptions(Game game) {
@@ -96,10 +96,10 @@ public class GameOptions extends State implements Statemethods{
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void keyReleased(KeyEvent e) {}
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void mouseClicked(MouseEvent e) {}
 
     private boolean isIn(MouseEvent e, PauseButton b) {
         return b.getBounds().contains(e.getX(), e.getY());

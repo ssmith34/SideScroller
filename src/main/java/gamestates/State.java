@@ -28,7 +28,7 @@ public class State {
 				game.getAudioPlayer().playSong(AudioPlayer.MENU_1);
 				break;
 			case PLAYING:
-				game.getAudioPlayer().setLevelSong(game.getPlaying().getLevelManager().getLvlIndex());
+				game.getAudioPlayer().setLevelSong(game.getPlaying().getLevelManager().getLevelIndex());
 				break;
 		}
 		Gamestate.state = state;

@@ -13,7 +13,7 @@ public class LevelManager {
 	private Game game;
 	private BufferedImage[] levelSprite;
 	private ArrayList<Level> levels;
-	private int lvlIndex = 0;
+	private int levelIndex = 0;
 
 	public LevelManager(Game game) {
 		this.game = game;
@@ -23,14 +23,14 @@ public class LevelManager {
 	}
 
 	public void loadNextLevel() {
-		lvlIndex++;
-		if (lvlIndex >= levels.size()) {
-			lvlIndex = 0;
+		levelIndex++;
+		if (levelIndex >= levels.size()) {
+			levelIndex = 0;
 			System.out.println("No more levels!");
 			Gamestate.state = Gamestate.MENU;
 		}
 
-		Level newLevel = levels.get(lvlIndex);
+		Level newLevel = levels.get(levelIndex);
 		game.getPlaying().getEnemyManager().loadEnemies(newLevel);
 		game.getPlaying().getPlayer().loadLvlData(newLevel.getLevelData());
 		game.getPlaying().setMaxLvlOffset(newLevel.getLvlOffset());
@@ -55,8 +55,8 @@ public class LevelManager {
 
 	public void draw(Graphics g, int lvlOffset) {
 		for (int j = 0; j < Game.TILES_IN_HEIGHT; j++)
-			for (int i = 0; i < levels.get(lvlIndex).getLevelData()[0].length; i++) {
-				int index = levels.get(lvlIndex).getSpriteIndex(i, j);
+			for (int i = 0; i < levels.get(levelIndex).getLevelData()[0].length; i++) {
+				int index = levels.get(levelIndex).getSpriteIndex(i, j);
 				g.drawImage(levelSprite[index], Game.TILES_SIZE * i - lvlOffset, Game.TILES_SIZE * j, Game.TILES_SIZE, Game.TILES_SIZE, null);
 			}
 	}
@@ -65,14 +65,14 @@ public class LevelManager {
 	}
 
 	public Level getCurrentLevel() {
-		return levels.get(lvlIndex);
+		return levels.get(levelIndex);
 	}
 
 	public int getAmountOfLevels() {
 		return levels.size();
 	}
 
-	public int getLvlIndex() {
-		return lvlIndex;
+	public int getLevelIndex() {
+		return levelIndex;
 	}
 }

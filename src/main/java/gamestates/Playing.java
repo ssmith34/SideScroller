@@ -51,7 +51,6 @@ public class Playing extends State implements Statemethods {
 		smallCloudsPos = new int[8];
 		for (int i = 0; i < smallCloudsPos.length; i++)
 			smallCloudsPos[i] = (int) (90 * Game.SCALE) + rnd.nextInt((int) (100 * Game.SCALE));
-
 		calcLvlOffset();
 		loadStartLevel();
 	}
@@ -181,11 +180,12 @@ public class Playing extends State implements Statemethods {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (!gameOver)
+		if (!gameOver) {
 			if (e.getButton() == MouseEvent.BUTTON1)
 				player.setAttacking(true);
-		else if (e.getButton() == MouseEvent.BUTTON3)
-			player.powerAttack();
+			else if (e.getButton() == MouseEvent.BUTTON3)
+				player.powerAttack();
+		}
 	}
 
 	@Override
@@ -276,6 +276,7 @@ public class Playing extends State implements Statemethods {
 	public void setMaxLvlOffset(int lvlOffset) {
 		this.maxLvlOffsetX = lvlOffset;
 	}
+
 	public void unpauseGame() {
 		paused = false;
 	}

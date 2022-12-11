@@ -7,7 +7,7 @@ public class Constants {
 	public static final float GRAVITY = 0.04f * Game.SCALE;
 	public static final int ANI_SPEED = 25;
 
-	public static class Projectiles {
+	public static class Projectiles{
 		public static final int CANNON_BALL_DEFAULT_WIDTH = 15;
 		public static final int CANNON_BALL_DEFAULT_HEIGHT = 15;
 		public static final int CANNON_BALL_WIDTH = (int) (Game.SCALE * CANNON_BALL_DEFAULT_WIDTH);
@@ -51,15 +51,14 @@ public class Constants {
 			switch (object_type) {
 				case RED_POTION:
 				case BLUE_POTION:
+				case CANNON_LEFT:
+				case CANNON_RIGHT:
 					return 7;
 				case BARREL:
 				case BOX:
 					return 8;
-				case CANNON_LEFT:
-				case CANNON_RIGHT:
-					return 7;
 				default:
-					return 1;
+					throw new IllegalStateException("Unexpected value: " + object_type);
 			}
 		}
 	}
@@ -95,6 +94,9 @@ public class Constants {
 						case DEAD:
 							return 5;
 					}
+					break;
+				default:
+					throw new IllegalStateException("Unexpected value: " + enemy_type);
 			}
 			return 0;
 		}

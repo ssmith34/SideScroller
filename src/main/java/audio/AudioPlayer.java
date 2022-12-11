@@ -1,11 +1,8 @@
 package audio;
 
 import javax.sound.sampled.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Random;
 
 public class AudioPlayer {
@@ -25,7 +22,7 @@ public class AudioPlayer {
 
     private Clip[] songs, effects;
     private int currentSongId;
-    private float volume = 1f;
+    private float volume = 0.5f;
     private boolean songMute, effectMute;
     private Random random = new Random();
 
@@ -75,8 +72,8 @@ public class AudioPlayer {
             songs[currentSongId].stop();
     }
 
-    public void setLevelSong(int lvlIndex) {
-        if (lvlIndex % 2 == 0)
+    public void setLevelSong(int levelIndex) {
+        if (levelIndex % 2 == 0)
             playSong(LEVEL_1);
         else
             playSong(LEVEL_2);

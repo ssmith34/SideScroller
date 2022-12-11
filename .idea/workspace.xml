@@ -35,11 +35,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/workspace/java-blue-week3-team8" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/PlatformerTutorial-ep27-nosound.zip" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="two.files.diff.last.used.file" value="$USER_HOME$/Downloads/PlatformerTutorial-ep19.zip!/PlatformerTutorial/src/utilz/LoadSave.java" />
+    <property name="two.files.diff.last.used.file" value="$USER_HOME$/Downloads/PlatformerTutorial-ep27-nosound.zip!/PlatformerTutorial/src/utilz/LoadSave.java" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -102,15 +102,6 @@
           <properties class="java.awt.image.RasterFormatException" package="java.awt.image" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/levels/LevelManager.java</url>
-          <line>39</line>
-          <properties class="levels.LevelManager" method="buildAllLevels">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

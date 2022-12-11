@@ -3,14 +3,11 @@ package ui;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-
 import gamestates.Gamestate;
 import gamestates.Playing;
 import main.Game;
 import utilz.LoadSave;
-import static utilz.Constants.UI.PauseButtons.*;
 import static utilz.Constants.UI.URMButtons.*;
-import static utilz.Constants.UI.VolumeButtons.*;
 
 public class PauseOverlay {
 
@@ -19,7 +16,6 @@ public class PauseOverlay {
 	private int bgX, bgY, bgW, bgH;
 	private AudioOptions audioOptions;
 	private UrmButton menuB, replayB, unpauseB;
-
 
 	public PauseOverlay(Playing playing) {
 		this.playing = playing;
@@ -39,8 +35,6 @@ public class PauseOverlay {
 		unpauseB = new UrmButton(unpauseX, bY, URM_SIZE, URM_SIZE, 0);
 	}
 
-
-
 	private void loadBackground() {
 		backgroundImg = LoadSave.GetSpriteAtlas(LoadSave.PAUSE_BACKGROUND);
 		bgW = (int) (backgroundImg.getWidth() * Game.SCALE);
@@ -50,12 +44,10 @@ public class PauseOverlay {
 	}
 
 	public void update() {
-
 		menuB.update();
 		replayB.update();
 		unpauseB.update();
 		audioOptions.update();
-
 	}
 
 	public void draw(Graphics g) {
@@ -87,6 +79,7 @@ public class PauseOverlay {
 	public void mouseReleased(MouseEvent e) {
 		if (isIn(e, menuB)) {
 			if (menuB.isMousePressed()) {
+				playing.resetAll();
 				playing.setGameState(Gamestate.MENU);
 				playing.unpauseGame();
 			}
@@ -103,7 +96,6 @@ public class PauseOverlay {
 		}
 		else
 			audioOptions.mouseReleased(e);
-
 		menuB.resetBools();
 		replayB.resetBools();
 		unpauseB.resetBools();

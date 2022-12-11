@@ -1,15 +1,14 @@
 package entities;
 
-import gamestates.Playing;
-import levels.Level;
-import utilz.LoadSave;
-import static utilz.Constants.EnemyConstants.*;
-
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import gamestates.Playing;
+import levels.Level;
+import utilz.LoadSave;
+import static utilz.Constants.EnemyConstants.*;
 public class EnemyManager {
 
     private Playing playing;
@@ -54,8 +53,9 @@ public class EnemyManager {
         for (Crabby c : crabbies)
             if (c.isActive())
                 if (attackBox.intersects(c.getHitbox())) {
-                    c.hurt(10);
-                    return;
+                    if (c.getCurrentHealth() > 0)
+                        c.hurt(10);
+                        return;
             }
     }
 

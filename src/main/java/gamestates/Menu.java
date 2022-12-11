@@ -29,7 +29,6 @@ public class Menu extends State implements Statemethods {
 		menuHeight = (int) (backgroundImg.getHeight() * Game.SCALE);
 		menuX = Game.GAME_WIDTH / 2 - menuWidth / 2;
 		menuY = (int) (45 * Game.SCALE);
-
 	}
 
 	private void loadButtons() {
@@ -74,7 +73,7 @@ public class Menu extends State implements Statemethods {
 				if (mb.isMousePressed())
 					mb.applyGamestate();
 				if (mb.getState() == Gamestate.PLAYING)
-					game.getAudioPlayer().setLevelSong(game.getPlaying().getLevelManager().getLvlIndex());
+					game.getAudioPlayer().setLevelSong(game.getPlaying().getLevelManager().getLevelIndex());
 				break;
 			}
 		}

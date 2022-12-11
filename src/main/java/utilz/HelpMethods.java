@@ -2,7 +2,6 @@ package utilz;
 
 import static utilz.Constants.EnemyConstants.CRABBY;
 import static utilz.Constants.ObjectConstants.*;
-import static utilz.Constants.ObjectConstants.BARREL;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -104,14 +103,14 @@ public class HelpMethods {
 		for (int i = 0; i < xEnd - xStart; i++)
 			if (IsTileSolid(xStart + i, y, lvlData))
 				return false;
-			return true;
+		return true;
 	}
 	public static boolean IsAllTilesWalkable(int xStart, int xEnd, int y, int[][] lvlData) {
 		if (IsAllTilesClear(xStart, xEnd, y, lvlData))
 			for (int i = 0; i < xEnd - xStart; i++) {
 				if (!IsTileSolid(xStart + i, y + 1, lvlData))
 					return false;
-		}
+			}
 		return true;
 	}
 

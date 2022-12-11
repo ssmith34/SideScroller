@@ -33,7 +33,7 @@ public class ObjectManager {
     }
 
     public void checkSpikesTouched(Player player) {
-        for(Spike s : spikes)
+        for (Spike s : spikes)
             if (s.getHitbox().intersects(player.getHitbox()))
                 player.kill();
 
@@ -81,26 +81,20 @@ public class ObjectManager {
     private void loadImgs() {
         BufferedImage potionSprite = LoadSave.GetSpriteAtlas(LoadSave.POTION_ATLAS);
         potionImgs = new BufferedImage[2][7];
-
         for (int j = 0; j < potionImgs.length; j++)
             for (int i = 0; i < potionImgs[j].length; i++)
                 potionImgs[j][i] = potionSprite.getSubimage(12 * i, 16 * j, 12, 16);
-
         BufferedImage containerSprite = LoadSave.GetSpriteAtlas(LoadSave.CONTAINER_ATLAS);
         containerImgs = new BufferedImage[2][8];
-
         for (int j = 0; j < containerImgs.length; j++)
             for (int i = 0; i < containerImgs[j].length; i++)
                 containerImgs[j][i] = containerSprite.getSubimage(40 * i, 30 * j, 40, 30);
         spikeImg = LoadSave.GetSpriteAtlas(LoadSave.TRAP_ATLAS);
-
         cannonImgs = new BufferedImage[7];
         BufferedImage temp = LoadSave.GetSpriteAtlas(LoadSave.CANNON_ATLAS);
         for (int i = 0; i < cannonImgs.length; i++)
             cannonImgs[i] = temp.getSubimage(i * 40, 0, 40, 26);
-
         cannonBallImg = LoadSave.GetSpriteAtlas(LoadSave.CANNON_BALL);
-
     }
 
     public void update(int[][] lvlData, Player player) {
@@ -193,7 +187,7 @@ public class ObjectManager {
     }
 
     private void drawTraps(Graphics g, int xLvlOffset) {
-        for(Spike s : spikes)
+        for (Spike s : spikes)
             g.drawImage(spikeImg, (int) (s.getHitbox().x - xLvlOffset), (int) (s.getHitbox().y - s.getyDrawOffset()), SPIKE_WIDTH, SPIKE_HEIGHT, null);
     }
 
@@ -227,6 +221,5 @@ public class ObjectManager {
             gc.reset();
         for (Cannon c : cannons)
             c.reset();
-
     }
 }
