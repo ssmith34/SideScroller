@@ -65,6 +65,8 @@ public class Constants {
 
 	public static class EnemyConstants {
 		public static final int CRABBY = 0;
+		public static final int STARFISH = 1;
+
 		public static final int IDLE = 0;
 		public static final int RUNNING = 1;
 		public static final int ATTACK = 2;
@@ -78,25 +80,30 @@ public class Constants {
 		public static final int CRABBY_DRAWOFFSET_X = (int) (26 * Game.SCALE);
 		public static final int CRABBY_DRAWOFFSET_Y = (int) (9 * Game.SCALE);
 
+		public static final int STARFISH_WIDTH_DEFAULT = 34;
+		public static final int STARFISH_HEIGHT_DEFAULT = 30;
+		public static final int STARFISH_WIDTH = (int) (STARFISH_WIDTH_DEFAULT * Game.SCALE);
+		public static final int STARFISH_HEIGHT = (int) (STARFISH_HEIGHT_DEFAULT * Game.SCALE);
+		public static final int STARFISH_DRAWOFFSET_X = (int) (9 * Game.SCALE);
+		public static final int STARFISH_DRAWOFFSET_Y = (int) (7 * Game.SCALE);
+
 		public static int GetSpriteAmount(int enemy_type, int enemy_state) {
 
 			switch (enemy_type) {
-				case CRABBY:
-					switch (enemy_state) {
-						case IDLE:
-							return 9;
-						case RUNNING:
-							return 6;
-						case ATTACK:
-							return 7;
-						case HIT:
-							return 4;
-						case DEAD:
-							return 5;
-					}
-					break;
-				default:
-					throw new IllegalStateException("Unexpected value: " + enemy_type);
+				case IDLE: {
+					if (enemy_type == CRABBY)
+						return 9;
+					else if (enemy_type == STARFISH)
+						return 8;
+				}
+				case RUNNING:
+					return 6;
+				case ATTACK:
+					return 7;
+				case HIT:
+					return 4;
+				case DEAD:
+					return 5;
 			}
 			return 0;
 		}

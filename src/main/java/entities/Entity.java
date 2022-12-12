@@ -27,8 +27,8 @@ public abstract class Entity {
 	}
 
 	protected void drawAttackBox(Graphics g, int xLvlOffset) {
-//        g.setColor(Color.red);
-//        g.drawRect((int) (attackBox.x - xLvlOffset), (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
+        g.setColor(Color.red);
+        g.drawRect((int) (attackBox.x - xLvlOffset), (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
 	}
 
 	protected void drawHitbox(Graphics g, int xLvlOffset) {
@@ -53,7 +53,9 @@ public abstract class Entity {
 		return aniIndex;
 	}
 
-	public int getCurrentHealth() {
-		return currentHealth;
+	protected void newState (int state) {
+		this.state = state;
+		aniTick = 0;
+		aniIndex = 0;
 	}
 }

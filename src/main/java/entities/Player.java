@@ -175,8 +175,8 @@ public class Player extends Entity {
 
 	public void render(Graphics g, int lvlOffset) {
 		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX, (int) (hitbox.y - yDrawOffset), width * flipW, height, null);
-//		drawHitbox(g, lvlOffset);
-//		drawAttackBox(g, lvlOffset);
+		drawHitbox(g, lvlOffset);
+		drawAttackBox(g, lvlOffset);
 		drawUI(g);
 	}
 
@@ -330,12 +330,14 @@ public class Player extends Entity {
 	}
 
 	public void changeHealth(int value) {
+		if (value < 0) {
+			if (state == HIT)
+				return;
+			else
+				newState(HIT);
+		}
 		currentHealth += value;
-
-		if (currentHealth <= 0)
-			currentHealth = 0;
-		else if (currentHealth >= maxHealth)
-			currentHealth = maxHealth;
+		currentHealth = Math.max(Math.min(currentHealth, maxHealth), 0);
 	}
 
 	public void kill() {
