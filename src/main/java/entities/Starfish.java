@@ -18,12 +18,12 @@ public class Starfish extends Enemy {
         initHitbox(17, 21);
     }
 
-    public void update (int[][] lvlData, Playing playing) {
+    public void update(int[][] lvlData, Playing playing) {
         updateBehavior(lvlData, playing);
         updateAnimationTick();
     }
 
-    private void updateBehavior (int[][] lvlData, Playing playing) {
+    private void updateBehavior(int[][] lvlData, Playing playing) {
         if (firstUpdate)
             firstUpdateCheck(lvlData);
         if (inAir)
@@ -33,7 +33,7 @@ public class Starfish extends Enemy {
                 case IDLE:
                     preRoll = true;
                     if (tickAfterRollInIdle >= 120) {
-                        if (isFloor(hitbox, lvlData))
+                        if (IsFloor(hitbox, lvlData))
                             newState(RUNNING);
                         else
                             inAir = true;
@@ -56,7 +56,7 @@ public class Starfish extends Enemy {
                             preRoll = false;
                     }
                     else {
-                        move (lvlData, playing);
+                        move(lvlData, playing);
                         checkDmgToPlayer(playing.getPlayer());
                         checkRollOver(playing);
                     }
@@ -71,7 +71,7 @@ public class Starfish extends Enemy {
         }
     }
 
-    private void checkDmgToPlayer (Player player) {
+    private void checkDmgToPlayer(Player player) {
         if (hitbox.intersects(player.getHitbox()))
             if (tickSinceLastDamageToPlayer >= 60) {
                 tickSinceLastDamageToPlayer = 0;
@@ -117,7 +117,7 @@ public class Starfish extends Enemy {
         }
     }
 
-    private void rollOver (Playing playing) {
+    private void rollOver(Playing playing) {
         newState(IDLE);
     }
 }

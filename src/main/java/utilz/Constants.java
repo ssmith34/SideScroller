@@ -7,7 +7,7 @@ public class Constants {
 	public static final float GRAVITY = 0.04f * Game.SCALE;
 	public static final int ANI_SPEED = 25;
 
-	public static class Projectiles{
+	public static class Projectiles {
 		public static final int CANNON_BALL_DEFAULT_WIDTH = 15;
 		public static final int CANNON_BALL_DEFAULT_HEIGHT = 15;
 		public static final int CANNON_BALL_WIDTH = (int) (Game.SCALE * CANNON_BALL_DEFAULT_WIDTH);
@@ -58,7 +58,7 @@ public class Constants {
 				case BOX:
 					return 8;
 				default:
-					throw new IllegalStateException("Unexpected value: " + object_type);
+					return 1;
 			}
 		}
 	}
@@ -66,6 +66,7 @@ public class Constants {
 	public static class EnemyConstants {
 		public static final int CRABBY = 0;
 		public static final int STARFISH = 1;
+		public static final int SHARK = 2;
 
 		public static final int IDLE = 0;
 		public static final int RUNNING = 1;
@@ -73,6 +74,7 @@ public class Constants {
 		public static final int HIT = 3;
 		public static final int DEAD = 4;
 
+		// Crab Values
 		public static final int CRABBY_WIDTH_DEFAULT = 72;
 		public static final int CRABBY_HEIGHT_DEFAULT = 32;
 		public static final int CRABBY_WIDTH = (int) (CRABBY_WIDTH_DEFAULT * Game.SCALE);
@@ -80,6 +82,7 @@ public class Constants {
 		public static final int CRABBY_DRAWOFFSET_X = (int) (26 * Game.SCALE);
 		public static final int CRABBY_DRAWOFFSET_Y = (int) (9 * Game.SCALE);
 
+		// Starfish Values
 		public static final int STARFISH_WIDTH_DEFAULT = 34;
 		public static final int STARFISH_HEIGHT_DEFAULT = 30;
 		public static final int STARFISH_WIDTH = (int) (STARFISH_WIDTH_DEFAULT * Game.SCALE);
@@ -87,18 +90,27 @@ public class Constants {
 		public static final int STARFISH_DRAWOFFSET_X = (int) (9 * Game.SCALE);
 		public static final int STARFISH_DRAWOFFSET_Y = (int) (7 * Game.SCALE);
 
-		public static int GetSpriteAmount(int enemy_type, int enemy_state) {
+		// Shark Values
+		public static final int SHARK_WIDTH_DEFAULT = 34;
+		public static final int SHARK_HEIGHT_DEFAULT = 30;
+		public static final int SHARK_WIDTH = (int) (SHARK_WIDTH_DEFAULT * Game.SCALE);
+		public static final int SHARK_HEIGHT = (int) (SHARK_HEIGHT_DEFAULT * Game.SCALE);
+		public static final int SHARK_DRAWOFFSET_X = (int) (8 * Game.SCALE);
+		public static final int SHARK_DRAWOFFSET_Y = (int) (6 * Game.SCALE);
 
-			switch (enemy_type) {
+		public static int GetSpriteAmount(int enemy_type, int enemy_state) {
+			switch (enemy_state) {
 				case IDLE: {
 					if (enemy_type == CRABBY)
 						return 9;
-					else if (enemy_type == STARFISH)
+					else if (enemy_type == STARFISH || enemy_type == SHARK)
 						return 8;
 				}
 				case RUNNING:
 					return 6;
 				case ATTACK:
+					if (enemy_type == SHARK)
+						return 8;
 					return 7;
 				case HIT:
 					return 4;
@@ -111,7 +123,10 @@ public class Constants {
 		public static int GetMaxHealth(int enemy_type) {
 			switch (enemy_type) {
 				case CRABBY:
-					return 10;
+					return 50;
+				case STARFISH:
+				case SHARK:
+					return 25;
 				default:
 					return 1;
 			}
@@ -121,6 +136,10 @@ public class Constants {
 			switch (enemy_type) {
 				case CRABBY:
 					return 15;
+				case STARFISH:
+					return 20;
+				case SHARK:
+					return 25;
 				default:
 					return 0;
 			}
@@ -171,7 +190,9 @@ public class Constants {
 
 	public static class Directions {
 		public static final int LEFT = 0;
+		public static final int UP = 1;
 		public static final int RIGHT = 2;
+		public static final int DOWN = 3;
 	}
 
 	public static class PlayerConstants {
@@ -181,11 +202,11 @@ public class Constants {
 		public static final int FALLING = 3;
 		public static final int ATTACK = 4;
 		public static final int HIT = 5;
-		public static final int DEATH = 6;
+		public static final int DEAD = 6;
 
 		public static int GetSpriteAmount(int player_action) {
 			switch (player_action) {
-				case DEATH:
+				case DEAD:
 					return 8;
 				case RUNNING:
 					return 6;

@@ -53,7 +53,6 @@ public class GameOverOverlay {
         menu.update();
         play.update();
     }
-    public void keyPressed(KeyEvent e) {}
 
     private boolean isIn(UrmButton b, MouseEvent e) {
         return b.getBounds().contains(e.getX(), e.getY());

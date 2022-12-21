@@ -15,11 +15,6 @@ public class KeyboardInputs implements KeyListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
 	public void keyReleased(KeyEvent e) {
 		switch (Gamestate.state) {
 			case MENU:
@@ -28,6 +23,8 @@ public class KeyboardInputs implements KeyListener {
 				case PLAYING:
 				gamePanel.getGame().getPlaying().keyReleased(e);
 				break;
+			case CREDITS:
+				gamePanel.getGame().getCredits().keyReleased(e);
 			default:
 				break;
 
@@ -49,4 +46,7 @@ public class KeyboardInputs implements KeyListener {
 				break;
 		}
 	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {}
 }

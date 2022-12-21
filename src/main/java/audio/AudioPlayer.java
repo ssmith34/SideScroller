@@ -91,7 +91,8 @@ public class AudioPlayer {
     }
 
     public void playEffect(int effect) {
-        effects[effect].setMicrosecondPosition(0);
+        if (effects[effect].getMicrosecondPosition() > 0)
+            effects[effect].setMicrosecondPosition(0);
         effects[effect].start();
     }
 
@@ -102,6 +103,7 @@ public class AudioPlayer {
         songs[currentSongId].setMicrosecondPosition(0);
         songs[currentSongId].loop(Clip.LOOP_CONTINUOUSLY);
     }
+
     public void toggleSongMute() {
         this.songMute = !songMute;
         for (Clip c : songs) {
