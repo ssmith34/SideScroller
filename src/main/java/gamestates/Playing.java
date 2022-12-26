@@ -149,28 +149,29 @@ public class Playing extends State implements Statemethods {
 	}
 
 	@Override
-	public void draw(Graphics g) {
-		g.drawImage(backgroundImg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
-		drawClouds(g);
+	public void draw(Graphics graphics) {
+		graphics.drawImage(backgroundImg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
+		drawClouds(graphics);
 		if (drawShip)
-			g.drawImage(shipImgs[shipAni], (int) (100 * Game.SCALE) - xLvlOffset, (int) ((288 * Game.SCALE) + shipHeightDelta), (int) (78 * Game.SCALE), (int) (72 * Game.SCALE), null);
+			graphics.drawImage(shipImgs[shipAni], (int) (100 * Game.SCALE) - xLvlOffset,
+					(int) ((288 * Game.SCALE) + shipHeightDelta), (int) (78 * Game.SCALE), (int) (72 * Game.SCALE), null);
 
-		levelManager.draw(g, xLvlOffset);
-		objectManager.draw(g, xLvlOffset);
-		enemyManager.draw(g, xLvlOffset);
-		player.render(g, xLvlOffset);
+		levelManager.draw(graphics, xLvlOffset);
+		objectManager.draw(graphics, xLvlOffset);
+		enemyManager.draw(graphics, xLvlOffset);
+		player.render(graphics, xLvlOffset);
 
 		if (paused) {
-			g.setColor(new Color(0, 0, 0, 150));
-			g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
-			pauseOverlay.draw(g);
+			graphics.setColor(new Color(0, 0, 0, 150));
+			graphics.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+			pauseOverlay.draw(graphics);
 		}
 		else if (gameOver)
-			gameOverOverlay.draw(g);
+			gameOverOverlay.draw(graphics);
 		else if (lvlCompleted)
-			levelCompletedOverlay.draw(g);
+			levelCompletedOverlay.draw(graphics);
 		else if (gameCompleted)
-			gameCompletedOverlay.draw(g);
+			gameCompletedOverlay.draw(graphics);
 	}
 
 	private void drawClouds(Graphics g) {
@@ -236,11 +237,14 @@ public class Playing extends State implements Statemethods {
 				case KeyEvent.VK_A:
 					player.setLeft(true);
 					break;
-				case KeyEvent.VK_E:
-					player.setAttacking(true);
-					break;
 				case KeyEvent.VK_D:
 					player.setRight(true);
+					break;
+				case KeyEvent.VK_SHIFT:
+					player.setAttacking(true);
+					break;
+				case KeyEvent.VK_ENTER:
+					player.powerAttack();
 					break;
 				case KeyEvent.VK_SPACE:
 					player.setJump(true);

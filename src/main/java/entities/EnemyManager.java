@@ -3,7 +3,6 @@ package entities;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import gamestates.Playing;
 import levels.Level;
@@ -54,12 +53,14 @@ public class EnemyManager {
     }
 
     private void drawCrabs(Graphics g, int xLvlOffset) {
-        for (Crabby c : currentLevel.getCrabs())
-            if (c.isActive()) {
-            g.drawImage(crabbyArr[c.getState()][c.getAniIndex()], (int) c.getHitbox().x - xLvlOffset - CRABBY_DRAWOFFSET_X + c.flipX(), (int) c.getHitbox().y - CRABBY_DRAWOFFSET_Y,
-                    CRABBY_WIDTH * c.flipW(), CRABBY_HEIGHT, null);
-//          c.drawHitbox(g, xLvlOffset);
-//          c.drawAttackBox(g, xLvlOffset);
+        for (Crabby crabby : currentLevel.getCrabs())
+            if (crabby.isActive()) {
+            g.drawImage(crabbyArr[crabby.getState()][crabby.getAniIndex()],
+                    (int) crabby.getHitbox().x - xLvlOffset - CRABBY_DRAWOFFSET_X + crabby.flipX(),
+                    (int) crabby.getHitbox().y - CRABBY_DRAWOFFSET_Y,
+                    CRABBY_WIDTH * crabby.flipW(), CRABBY_HEIGHT, null);
+//          crabby.drawHitbox(g, xLvlOffset);
+//          crabby.drawAttackBox(g, xLvlOffset);
         }
     }
 
@@ -68,7 +69,8 @@ public class EnemyManager {
             if (starfish.isActive()) {
                 g.drawImage(starfishArr[starfish.getState()][starfish.getAniIndex()], (int) starfish.getHitbox().x - xLvlOffset - STARFISH_DRAWOFFSET_X + starfish.flipX(),
                         (int) starfish.getHitbox().y - STARFISH_DRAWOFFSET_Y + (int) starfish.getPushDrawOffset(), STARFISH_WIDTH * starfish.flipW(), STARFISH_HEIGHT, null);
-//				p.drawHitbox(g, xLvlOffset);
+//				starfish.drawHitbox(g, xLvlOffset);
+//                starfish.drawAttackBox(g, xLvlOffset);
             }
     }
 
@@ -77,8 +79,8 @@ public class EnemyManager {
             if (shark.isActive()) {
                 g.drawImage(sharkArr[shark.getState()][shark.getAniIndex()], (int) shark.getHitbox().x - xLvlOffset - SHARK_DRAWOFFSET_X + shark.flipX(),
                         (int) shark.getHitbox().y - SHARK_DRAWOFFSET_Y + (int) shark.getPushDrawOffset(), SHARK_WIDTH * shark.flipW(), SHARK_HEIGHT, null);
-//				s.drawHitbox(g, xLvlOffset);
-//				s.drawAttackBox(g, xLvlOffset);
+//				shark.drawHitbox(g, xLvlOffset);
+//				shark.drawAttackBox(g, xLvlOffset);
             }
     }
 
@@ -88,6 +90,20 @@ public class EnemyManager {
                 if (crabby.getState() != DEAD && crabby.getState() != HIT)
                     if (attackBox.intersects(crabby.getHitbox())) {
                         crabby.hurt(20);
+                        return;
+                    }
+        for (Shark shark : currentLevel.getSharks())
+            if (shark.isActive())
+                if (shark.getState() != DEAD && shark.getState() != HIT)
+                    if (attackBox.intersects(shark.getHitbox())) {
+                        shark.hurt(15);
+                        return;
+                    }
+        for (Starfish starfish : currentLevel.getStarfish())
+            if (starfish.isActive())
+                if (starfish.getState() != DEAD && starfish.getState() != HIT)
+                    if (attackBox.intersects(starfish.getHitbox())) {
+                        starfish.hurt(15);
                         return;
                     }
     }
@@ -114,5 +130,4 @@ public class EnemyManager {
         for (Shark shark : currentLevel.getSharks())
             shark.resetEnemy();
     }
-
 }

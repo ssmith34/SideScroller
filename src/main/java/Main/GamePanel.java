@@ -11,14 +11,19 @@ import static main.Game.GAME_WIDTH;
 public class GamePanel extends JPanel {
 
 	private MouseInputs mouseInputs;
+	private KeyboardInputs keyboardInputs;
 	private Game game;
 
 	public GamePanel(Game game) {
+		setFocusable(true);
+		requestFocus();
+		requestFocusInWindow();
 		mouseInputs = new MouseInputs(this);
+		keyboardInputs = new KeyboardInputs(this);
 		this.game = game;
 		setPanelSize();
-		addKeyListener(new KeyboardInputs(this));
 		addMouseListener(mouseInputs);
+		addKeyListener(keyboardInputs);
 		addMouseMotionListener(mouseInputs);
 	}
 
